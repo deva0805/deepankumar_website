@@ -17,7 +17,7 @@
             --border-color: #e2e8f0;
             --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
             --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
-            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); /* Smoother, less "floppy" transition */
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * {
@@ -46,7 +46,7 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-color);
             box-shadow: var(--shadow-sm);
@@ -60,6 +60,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            z-index: 1001; /* Keep above mobile menu */
         }
 
         .nav-links {
@@ -78,6 +79,26 @@
 
         .nav-links a:hover {
             color: var(--primary);
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 3px;
+            transition: var(--transition);
         }
 
         /* Common Section Styles */
@@ -100,6 +121,7 @@
             align-items: center;
             justify-content: center;
             gap: 15px;
+            flex-wrap: wrap;
         }
 
         /* Hero Section */
@@ -117,7 +139,7 @@
 
         .hero-text h1 {
             font-size: 3.8rem;
-            line-height: 1.1;
+            line-height: 1.15;
             margin-bottom: 1rem;
             color: var(--text-main);
             font-weight: 800;
@@ -144,8 +166,9 @@
         /* Statistics SVG Row */
         .hero-stats {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             margin-top: 2rem;
+            flex-wrap: wrap;
         }
 
         .stat-box {
@@ -157,6 +180,8 @@
             border-radius: 12px;
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-color);
+            flex: 1;
+            min-width: 140px;
         }
 
         .stat-box h4 {
@@ -177,23 +202,25 @@
             display: flex;
             justify-content: center;
             position: relative;
+            width: 100%;
         }
 
         .hero-image-container {
             position: relative;
-            width: 380px;
-            height: 380px;
+            width: 100%;
+            max-width: 380px;
+            aspect-ratio: 1;
         }
 
         /* Decorative SVG behind image */
         .image-decor {
             position: absolute;
-            top: -20px;
-            right: -20px;
-            width: 100%;
-            height: 100%;
+            top: -5%;
+            right: -5%;
+            width: 110%;
+            height: 110%;
             z-index: 0;
-            animation: slowSpin 20s linear infinite;
+            animation: slowSpin 25s linear infinite;
         }
 
         .hero-image {
@@ -212,19 +239,20 @@
             transform: translateY(-10px) scale(1.02);
         }
 
-        /* Subtle Cards (Replaced the floppy tilt) */
+        /* Cards Grid */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             max-width: 1100px;
             margin: 0 auto;
+            width: 100%;
         }
 
         .smooth-card {
             background: var(--surface-color);
             border: 1px solid var(--border-color);
-            padding: 2.5rem;
+            padding: 2.5rem 2rem;
             border-radius: 16px;
             box-shadow: var(--shadow-sm);
             transition: var(--transition);
@@ -255,12 +283,9 @@
         }
 
         .smooth-card h3 {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             color: var(--text-main);
             margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
         .date-badge {
@@ -289,11 +314,12 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            padding: 0.8rem 1.5rem;
+            padding: 0.8rem 1.2rem;
             background: var(--surface-color);
             border: 1px solid var(--border-color);
             border-radius: 50px;
             font-weight: 600;
+            font-size: 0.9rem;
             color: var(--text-muted);
             transition: var(--transition);
             box-shadow: var(--shadow-sm);
@@ -316,6 +342,7 @@
         .btn-primary {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
             margin-top: 2rem;
             padding: 1rem 2.5rem;
@@ -327,6 +354,7 @@
             text-decoration: none;
             transition: var(--transition);
             box-shadow: 0 10px 15px -3px rgba(30, 58, 138, 0.3);
+            width: fit-content;
         }
 
         .btn-primary:hover {
@@ -349,7 +377,6 @@
             gap: 10px;
         }
 
-        /* SVG Icons Styling */
         svg.icon {
             width: 24px;
             height: 24px;
@@ -358,6 +385,7 @@
             stroke-width: 2;
             stroke-linecap: round;
             stroke-linejoin: round;
+            flex-shrink: 0;
         }
 
         @keyframes slowSpin {
@@ -365,18 +393,80 @@
             to { transform: rotate(360deg); }
         }
 
-        @media (max-width: 900px) {
+        /* =======================================================
+           RESPONSIVE DESIGN: Tablets & Mobile
+           ======================================================= */
+        
+        /* Tablets (max-width: 992px) */
+        @media (max-width: 992px) {
             #home {
                 flex-direction: column-reverse;
                 text-align: center;
-                padding-top: 120px;
+                padding-top: 130px;
             }
-            .hero-stats {
-                justify-content: center;
-                flex-wrap: wrap;
+            .hero-text h1 { font-size: 3.2rem; }
+            .hero-text p { margin: 0 auto 2rem; }
+            .hero-stats { justify-content: center; }
+            
+            .hero-image-container { max-width: 320px; }
+            
+            section { min-height: auto; padding: 90px 5% 60px; }
+            .section-title { font-size: 2.2rem; margin-bottom: 3rem; }
+        }
+
+        /* Mobile Phones (max-width: 768px) */
+        @media (max-width: 768px) {
+            /* Mobile Navigation Toggle */
+            .mobile-menu-btn { display: flex; }
+            
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--surface-color);
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem 0 2rem;
+                border-bottom: 1px solid var(--border-color);
+                box-shadow: var(--shadow-lg);
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); /* Hidden state */
+                transition: clip-path 0.4s ease-in-out;
             }
-            .nav-links { display: none; }
-            .hero-text h1 { font-size: 3rem; }
+
+            .nav-links.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); /* Revealed state */
+            }
+
+            .nav-links li { margin: 10px 0; }
+
+            /* Toggle Animation */
+            .mobile-menu-btn.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
+            .mobile-menu-btn.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+            /* Typography Scaling */
+            .hero-text h1 { font-size: 2.5rem; }
+            .hero-text h3 { font-size: 1.25rem; }
+            .section-title { font-size: 1.8rem; }
+            
+            .hero-image-container { max-width: 280px; }
+            
+            .grid-container { grid-template-columns: 1fr; }
+            .skill-item { font-size: 0.85rem; padding: 0.7rem 1rem; }
+        }
+
+        /* Small Mobile Devices (max-width: 480px) */
+        @media (max-width: 480px) {
+            .hero-text h1 { font-size: 2.2rem; }
+            .hero-stats { flex-direction: column; gap: 1rem; }
+            .stat-box { justify-content: center; }
+            
+            .hero-image-container { max-width: 240px; }
+            .hero-image { border-width: 5px; }
+            
+            .btn-primary { width: 100%; font-size: 1rem; }
+            .smooth-card { padding: 2rem 1.5rem; }
         }
     </style>
 </head>
@@ -384,15 +474,19 @@
 
     <nav>
         <a href="#home" class="logo">
-            <!-- Briefcase Icon -->
             <svg class="icon" viewBox="0 0 24 24"><path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
             Deepan Kumar
         </a>
-        <ul class="nav-links">
-            <li><a href="#academics">Academics</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
+        
+        <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle Menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#academics" onclick="closeMenu()">Academics</a></li>
+            <li><a href="#experience" onclick="closeMenu()">Experience</a></li>
+            <li><a href="#skills" onclick="closeMenu()">Skills</a></li>
+            <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
         </ul>
     </nav>
 
@@ -422,7 +516,6 @@
 
         <div class="hero-image-wrapper">
             <div class="hero-image-container">
-                <!-- Abstract Circular Chart SVG Decor -->
                 <svg class="image-decor" viewBox="0 0 100 100">
                     <circle cx="50" cy="50" r="48" fill="none" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="5 5"></circle>
                     <path d="M50 2 a48 48 0 0 1 48 48" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"></path>
@@ -435,7 +528,7 @@
 
     <section id="academics">
         <h2 class="section-title">
-            <svg class="icon" style="width: 36px; height: 36px;" viewBox="0 0 24 24"><path d="M12 14l9-5-9-5-9 5 9 5z"></path><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path><path d="M12 14v7"></path></svg>
+            <svg class="icon" style="width: 32px; height: 32px;" viewBox="0 0 24 24"><path d="M12 14l9-5-9-5-9 5 9 5z"></path><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path><path d="M12 14v7"></path></svg>
             Academic Distinction
         </h2>
         <div class="grid-container">
@@ -464,7 +557,7 @@
 
     <section id="experience" style="background: var(--surface-color);">
         <h2 class="section-title">
-            <svg class="icon" style="width: 36px; height: 36px;" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+            <svg class="icon" style="width: 32px; height: 32px;" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
             Professional Engagements
         </h2>
         <div class="grid-container">
@@ -496,7 +589,7 @@
 
     <section id="skills">
         <h2 class="section-title">
-            <svg class="icon" style="width: 36px; height: 36px;" viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+            <svg class="icon" style="width: 32px; height: 32px;" viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
             Core Competencies
         </h2>
         <div class="skills-wrapper">
@@ -541,6 +634,22 @@
         <p>&copy; 2026 Deepan Kumar B. All Rights Reserved.</p>
         <p style="font-size: 0.8rem;">Designed for Professional Finance & Management Opportunities</p>
     </footer>
+
+    <!-- Mobile Menu Script -->
+    <script>
+        const mobileBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.getElementById('navLinks');
+
+        function toggleMenu() {
+            mobileBtn.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            mobileBtn.classList.remove('active');
+            navLinks.classList.remove('active');
+        }
+    </script>
 
 </body>
 </html>
