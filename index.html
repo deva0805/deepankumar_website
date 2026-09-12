@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepan Kumar B | Finance & HR Portfolio</title>
+    <style>
+        :root {
+            --primary-dark: #0a1128;
+            --secondary-navy: #1c2541;
+            --accent-gold: #c5a059;
+            --bg-light: #f8f9fa;
+            --text-dark: #2b2d42;
+            --text-light: #8d99ae;
+            --white: #ffffff;
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+            background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 17, 40, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--accent-gold);
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--accent-gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Section Layout */
+        section {
+            padding: 120px 5% 80px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 3rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--accent-gold);
+        }
+
+        /* Hero Section */
+        #home {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-navy) 100%);
+            color: var(--white);
+            clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+            padding-bottom: 120px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .hero-text h3 {
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .hero-text p {
+            color: #d1d5db;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Premium Image Styling */
+        .hero-image img {
+            width: 380px;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 50%;
+            background: var(--bg-light);
+            padding: 10px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--accent-gold);
+            transition: var(--transition);
+        }
+
+        .hero-image img:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px -12px rgba(197, 160, 89, 0.3);
+        }
+
+        /* Academics Timeline */
+        .timeline {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: #e2e8f0;
+        }
+
+        .timeline-item {
+            width: 45%;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            float: left;
+            clear: right;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            float: right;
+            clear: left;
+            text-align: left;
+        }
+
+        .timeline-content {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border-top: 4px solid var(--secondary-navy);
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border-top-color: var(--accent-gold);
+        }
+
+        .timeline-content h3 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content .grade {
+            display: inline-block;
+            background: #f1f5f9;
+            color: var(--secondary-navy);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        /* Clearfix for timeline */
+        .timeline::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Internships Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid #e2e8f0;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--secondary-navy);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        .card:hover::before {
+            background: var(--accent-gold);
+        }
+
+        .card h3 {
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card .date {
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Skills Section */
+        #skills {
+            background: var(--white);
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .skill-tag {
+            background: var(--bg-light);
+            color: var(--secondary-navy);
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            border: 1px solid #e2e8f0;
+            transition: var(--transition);
+            cursor: default;
+        }
+
+        .skill-tag:hover {
+            background: var(--secondary-navy);
+            color: var(--white);
+            border-color: var(--secondary-navy);
+            transform: translateY(-3px);
+        }
+
+        /* Contact Section */
+        #contact {
+            text-align: center;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            background: var(--accent-gold);
+            color: var(--white);
+            padding: 1.2rem 3rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-top: 2.5rem;
+            transition: var(--transition);
+            box-shadow: 0 10px 20px rgba(197, 160, 89, 0.2);
+        }
+
+        .contact-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(10, 17, 40, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-dark);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            #home {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 150px;
+                clip-path: none;
+            }
+            
+            .hero-text p {
+                margin: 0 auto 2rem;
+            }
+            
+            .timeline::before {
+                left: 0;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                float: none !important;
+                text-align: left !important;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#home" class="logo">Deepan <span>Kumar</span></a>
+        <ul class="nav-links">
+            <li><a href="#academics">Academics</a></li>
+            <li><a href="#internships">Experience</a></li>
+            <li><a href="#skills">Expertise</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home">
+        <div class="hero-text">
+            <h1>Deepan Kumar B</h1>
+            <h3>Finance & Human Resources Professional</h3>
+            <p>Driven by a passion for continuous growth and organizational excellence. Currently pursuing an MBA specializing in Finance and HR, I leverage hands-on operational and corporate experience to drive strategic financial success and human capital optimization.</p>
+        </div>
+        <div class="hero-image">
+            <img src="ChatGPT Image Sep 12, 2026, 07_43_43 PM.png" alt="Deepan Kumar B Headshot">
+        </div>
+    </section>
+
+    <section id="academics">
+        <h2>Academic Portfolio</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>MBA - Finance and HR</h3>
+                    <p>Second Year Candidate</p>
+                    <p style="margin-top: 10px; color: var(--text-light);">Focusing on financial strategy, asset management, and corporate human resources.</p>
+                    <span class="grade">First Year: 8.56 CGPA (First Class)</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Bachelor of Business Administration</h3>
+                    <p>Perunthalaivar Kamarajar Arts College</p>
+                    <p style="margin-top: 10px; color: var(--text-light);">Foundational studies in business operations, corporate structures, and management.</p>
+                    <span class="grade">5.04 CGPA</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Higher Secondary (Commerce)</h3>
+                    <p>Poncos Higher Secondary School</p>
+                    <span class="grade">67%</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Secondary Education (SSLC)</h3>
+                    <p>Aditya Vidyashram Residential School</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="internships">
+        <h2>Professional Experience</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Caplin Point Laboratories</h3>
+                <div class="date">Jul 2026 – Sep 2026</div>
+                <p>Completed a specialized two-month corporate internship during the first year of my MBA, engaging directly with operational workflows and organizational protocols in the pharmaceutical sector.</p>
+            </div>
+            <div class="card">
+                <h3>Jyothy Labs Limited</h3>
+                <div class="date">Jan 2026 – Feb 2026</div>
+                <p>Contributed to a targeted organizational project. Enhanced practical management insights and developed a deeper understanding of FMCG corporate operations.</p>
+            </div>
+            <div class="card">
+                <h3>Indian Flying Force</h3>
+                <div class="date">Jun 2023 – Aug 2023</div>
+                <p>Managed marketing and advertising initiatives at the management level. Gained in-depth knowledge of operational maintenance and structured workflow processes.</p>
+            </div>
+            <div class="card">
+                <h3>Accord Puducherry</h3>
+                <div class="date">Sep 2022 – Oct 2022</div>
+                <p>Completed intensive training under the Industrial Release Scheme. Developed strict attention to detail, time management, and client relation protocols.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Areas of Expertise</h2>
+        <div class="skills-container">
+            <div class="skill-tag">Financial Analysis & Planning</div>
+            <div class="skill-tag">Corporate Workflow Optimization</div>
+            <div class="skill-tag">Human Capital Management</div>
+            <div class="skill-tag">Operational Strategy</div>
+            <div class="skill-tag">Client & Stakeholder Relations</div>
+            <div class="skill-tag">Team Leadership</div>
+            <div class="skill-tag">Marketing & Advertising Strategy</div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Let's Connect</h2>
+        <p style="max-width: 600px; margin: 0 auto; color: var(--text-light);">I am actively seeking dynamic roles in finance and management where I can apply my analytical skills and organizational expertise to drive measurable growth.</p>
+        <a href="mailto:myself@deepankumar.in" class="contact-btn">myself@deepankumar.in</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Deepan Kumar B. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
